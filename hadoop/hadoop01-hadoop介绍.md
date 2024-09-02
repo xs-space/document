@@ -30,3 +30,15 @@
 	信：数据的可信赖度比较高。
 ```
 ### Apache Hadoop介绍
+```shell
+简介
+  它是Hadoop的开源版本，由HDFS（存）、MapReduce（计算）、Yarn（资源调度）三大组件组成。
+Hadoop由来
+  道格·卡丁（Doug Cutting）早期做了一个爬虫框架叫Nutch（Java写的），非常好用，但是遇到了一个问题即：如何来存储和计算爬取到的海量网页数据。这个时候谷歌的三篇文章给了他灵感，也被称之为“大数据的三驾马车”。
+  2003，谷歌发表GFS：HDFS（Hadoop Distributed File System）
+  2004，谷歌发表MapReduce：MapReduce
+  2006，谷歌发表BigTable：HBase
+Hadoop版本
+  社区版：指的是Apache Hadoop，免费、稳定性稍差，但是更新速度快。
+  商业版：指的是CDH、星环等，收费、稳定性较好，但是更新周期相对较慢。
+```
