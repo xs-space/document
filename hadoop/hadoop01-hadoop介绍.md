@@ -103,3 +103,16 @@ Apache Hadoop架构
   MapReduce程序所需的数据源及结果数据的存储都是由HDFS来完成的。
   MapReduce程序执行所需的资源等都是由Yarn来调度的。
 ```
+### 七、Apache Hadoop环境搭建
+```shell
+参考：./documents/01-hadoop集群搭建.doc
+```
+### 八、Hadoop集群初体验
+```shell
+1.计算圆周率
+  cd /export/server/hadoop/share/hadoop/mapreduce
+  hadoop jar hadoop-mapreduce-examples-3.3.0.jar pi 5 10
+2.词频统计（WordCount案例）
+  cd /export/server/hadoop/share/hadoop/mapreduce
+  hadoop jar hadoop-mapreduce-examples-3.3.0.jar wordcount /wordcount/input/word.txt /wordcount/output
+```
