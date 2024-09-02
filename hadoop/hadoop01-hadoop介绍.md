@@ -82,6 +82,6 @@ Apache Hadoop架构
     HDFS组件：负责存储
     MapReduce（代码级别）：负责计算
     Yarn组件：负责任务接收和资源调度
-HDFS组件和Yarn组件结构图
-![1683965021349](assets/1683965021349.png)
 ```
+**HDFS组件和Yarn组件结构图**
+![1683965021349](assets/1683965021349.png)
