@@ -69,7 +69,9 @@ Yarn：统一的资源和任务调度器
 主备模式
   一群大哥一个干活（Active激活），其它的监控（StandBy备用），宕机就上。
 ```
+
 ### 六、Apache Hadoop框架
+
 ```shell
 简介
   狭义上：指是Hadoop软件本身，有HDFS、MapReduce、Yarn组件组成。
@@ -83,9 +85,11 @@ Apache Hadoop架构
     MapReduce（代码级别）：负责计算
     Yarn组件：负责任务接收和资源调度
 ```
+
 **HDFS组件和Yarn组件结构图**
 ![1683965021349](assets/1683965021349.png)
 **MapReduce介绍**
+
 ```shell
   它是代码级别的Hadoop架构的一部分，负责计算，采用分而治之的思想。即：把大问题拆分成N个小问题，小问题解决了，大问题也就解决了。
     如：计算 1 ~ 1000 之间的质数和
@@ -103,11 +107,15 @@ Apache Hadoop架构
   MapReduce程序所需的数据源及结果数据的存储都是由HDFS来完成的。
   MapReduce程序执行所需的资源等都是由Yarn来调度的。
 ```
+
 ### 七、Apache Hadoop环境搭建
+
 ```shell
 参考：./documents/01-hadoop集群搭建.doc
 ```
+
 ### 八、Hadoop集群初体验
+
 ```shell
 1.计算圆周率
   cd /export/server/hadoop/share/hadoop/mapreduce
