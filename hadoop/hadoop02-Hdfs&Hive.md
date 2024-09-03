@@ -42,38 +42,52 @@ HDFS的适用场景
   hadoop fs -命令名 [选项] [参数]    # 更通用, 可以操作多种文件系统
   hdfs dfs -命令名 [选项] [参数]     # 只能操作HDFS文件系统
 
-# ls命令, 查看指定目录的(子级)信息的
-hadoop fs -ls /		# 只能查看单级
-hdfs dsf -ls /		# 只能查看单级
+ls
+  hadoop fs -ls /   # 只能查看单级
+  hdfs dsf -ls /    # 只能查看单级
+  hadoop fs -lsr /	# 查看目录的信息（包括所有子集），已过时
+  hadoop fs -ls -R /  # 查看目录的信息（包括所有子集），推荐使用
+mkdir
+  hadoop fs -mkdir /aa
+  hadoop fs -mkdir -p /aa/bb/cc
+put
+  格式：hadoop fs -put Linux文件路径 HDFS目录路径
+  hadoop fs -put /root/1.txt /aa/bb/cc
+cat
+  hadoop fs -cat /aa/bb/cc/1.txt
+get
+  格式: hadoop fs -get HDFS文件路径 Linux目录路径
+  hadoop fs -get /aa/bb/cc/1.txt ./
+mv
+  必须是HDFS -> HDFS
+  hadoop fs -mv /aa/bb/cc/1.txt /aa/bb
+cp
+  必须是HDFS -> HDFS
+  hadoop fs -cp /aa/bb/cc/1.txt /aa/bb
+rm
+  文件夹：用-rmr，已过时，推荐使用-rm -r
+  hadoop fs -rmr /aa
+appendToFile  
+  唯一一个可以修改HDFS文件内容的命令，即：把1个文件数据追加到某个文件中
+  Linux -> HDFS
+  hadoop fs -appendToFile Linux文件路径 HDFS文件路径
+  hadoop fs -appendToFile /root/2.txt  /aa/1.txt
+```
 
-hadoop fs -lsr /	# 查看目录的信息(包括所有子集), 已过时, 推荐使用 -ls -R
+### 分布式SQL计算
 
-# mkdir命令, 创建目录的
-hadoop fs -mkdir /aa
-hadoop fs -mkdir -p /aa/bb/cc
-
-# put命令, 把Linux文件上传到HDFS中.
-# 格式: hadoop fs -put Linux文件路径 HDFS目录路径
-hadoop fs -put /root/1.txt /aa/bb/cc
-
-# cat命令, 查看HDFS的文件内容的.
-hadoop fs -cat /aa/bb/cc/1.txt
-
-# get命令, 从HDFS中下载文件到本地(Linux系统)
-# 格式: hadoop fs -get HDFS文件路径 Linux目录路径
-hadoop fs -get /aa/bb/cc/1.txt ./
-
-# mv命令, 剪切, 必须是: HDFS <=> HDFS
-hadoop fs -mv /aa/bb/cc/1.txt /aa/bb
-
-# cp命令, 复制, 必须是: HDFS <=> HDFS
-hadoop fs -cp /aa/bb/cc/1.txt /aa/bb
-
-# rm命令, 删除.  如果是文件夹, 用-rmr, 但是这个命令已过时, 推荐使用: -rm -r
-hadoop fs -rmr /aa
-
-# appendToFile命令, 它是唯一一个可以修改HDFS文件内容的命令, 即: 把1个文件数据追加到某个文件中.
-# 细节: Linux => HDFS
-# hadoop fs -appendToFile Linux文件路径 HDFS文件路径
-hadoop fs -appendToFile /root/2.txt  /aa/1.txt
+```shell
+概述
+  就是通过分布式（多机器）的方式执行SQL计算，获取结果。
+为啥不学习用java和python操作MR程序
+  Java、Python学习成本相对较高
+  直接用编程语言操作MR开发复杂业务时难度相对较大
+Apache Hive数据分析
+  即：通过写Hive SQL的方式开展分析，底层会将其转成MR程序来执行。
+MR程序的两个弊端是什么
+  1.开发难度相对较大	 # 通过Hive解决，写SQL -> 底层自动转MR程序
+  2.执行速度相对较慢	 # 换计算引擎，如：Presto、Spark、Flink...
+基于MapReduce构建分布式SQL引擎需要有哪些组件
+  元数据管理服务（metastore）：负责管理元数据
+  SQL解析器：负责解析SQL，将其转成MR程序运行并获取结果然后返回
 ```
