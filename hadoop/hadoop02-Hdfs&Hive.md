@@ -1,4 +1,5 @@
-### HDFS简介
+### 一、HDFS简介
+
 ```shell
 hdfs简介
   全称Hadoop Distributed File System，是Hadoop框架的一个组件，用于实现分布式存储。
@@ -25,3 +26,11 @@ HDFS的适用场景
   3.一次写入，多次读取
   4.随机读写要求相对较低
 ```
+
+### 二、namenode如何管理datanode
+
+![1684030996667](assets/1684030996667.png)
+
+### 三、HDFS默认的3副本数是如何存储
+
+![1684031906326](assets/1684031906326.png)
