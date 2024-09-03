@@ -34,3 +34,46 @@ HDFS的适用场景
 ### 三、HDFS默认的3副本数是如何存储
 
 ![1684031906326](assets/1684031906326.png)
+
+### 四、HDFS-Shell命令
+
+```shell
+格式：如下两种方式，除了通用性以外，其它没区别
+  hadoop fs -命令名 [选项] [参数]    # 更通用, 可以操作多种文件系统
+  hdfs dfs -命令名 [选项] [参数]     # 只能操作HDFS文件系统
+
+# ls命令, 查看指定目录的(子级)信息的
+hadoop fs -ls /		# 只能查看单级
+hdfs dsf -ls /		# 只能查看单级
+
+hadoop fs -lsr /	# 查看目录的信息(包括所有子集), 已过时, 推荐使用 -ls -R
+
+# mkdir命令, 创建目录的
+hadoop fs -mkdir /aa
+hadoop fs -mkdir -p /aa/bb/cc
+
+# put命令, 把Linux文件上传到HDFS中.
+# 格式: hadoop fs -put Linux文件路径 HDFS目录路径
+hadoop fs -put /root/1.txt /aa/bb/cc
+
+# cat命令, 查看HDFS的文件内容的.
+hadoop fs -cat /aa/bb/cc/1.txt
+
+# get命令, 从HDFS中下载文件到本地(Linux系统)
+# 格式: hadoop fs -get HDFS文件路径 Linux目录路径
+hadoop fs -get /aa/bb/cc/1.txt ./
+
+# mv命令, 剪切, 必须是: HDFS <=> HDFS
+hadoop fs -mv /aa/bb/cc/1.txt /aa/bb
+
+# cp命令, 复制, 必须是: HDFS <=> HDFS
+hadoop fs -cp /aa/bb/cc/1.txt /aa/bb
+
+# rm命令, 删除.  如果是文件夹, 用-rmr, 但是这个命令已过时, 推荐使用: -rm -r
+hadoop fs -rmr /aa
+
+# appendToFile命令, 它是唯一一个可以修改HDFS文件内容的命令, 即: 把1个文件数据追加到某个文件中.
+# 细节: Linux => HDFS
+# hadoop fs -appendToFile Linux文件路径 HDFS文件路径
+hadoop fs -appendToFile /root/2.txt  /aa/1.txt
+```
